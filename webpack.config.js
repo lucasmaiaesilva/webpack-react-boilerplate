@@ -1,5 +1,4 @@
 var HtmlWebPackPlugin = require('html-webpack-plugin')
-var DashboardPlugin = require('webpack-dashboard/plugin')
 
 module.exports = {
   entry: './src/index.js',
@@ -8,26 +7,36 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.styl$/,
-        loader: 'style-loader!css-loader!stylus-loader'
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+          { loader: 'stylus-loader' },
+        ]
       },
       {
         test: /\.js$/,
-        loaders: ['react-hot-loader', 'babel-loader'],
+        use: [
+          { loader: 'react-hot-loader'},
+          { loader: 'babel-loader'},
+        ],
         exclude: /node_modules/
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg)/,
-        loaders: ['url', 'img']
+        use: [
+          { loader: 'url' },
+          { loader: 'img' }
+        ]
       }
     ]
   },
+  mode: 'development',
   plugins: [
     new HtmlWebPackPlugin({
       template: 'src/template.html'
-    }),
-    new DashboardPlugin()
+    })
   ]
 }
