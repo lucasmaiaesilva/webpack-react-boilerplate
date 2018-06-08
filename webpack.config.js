@@ -13,14 +13,13 @@ module.exports = {
         use: [
           { loader: 'style-loader' },
           { loader: 'css-loader' },
-          { loader: 'stylus-loader' },
+          { loader: 'stylus-loader' }
         ]
       },
       {
         test: /\.js$/,
         use: [
-          { loader: 'react-hot-loader'},
-          { loader: 'babel-loader'},
+          { loader: 'babel-loader'}
         ],
         exclude: /node_modules/
       },
